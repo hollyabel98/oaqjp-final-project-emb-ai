@@ -1,18 +1,27 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
 
 app = Flask("Emotion Detector") 
 
 @app.route("/emotionDetector")
-def sent_detector():
-    # Retrieve the text to analyze from the request arguments
+def detect_emotion():
     text_to_analyze = request.args.get('textToAnalyze')
-
-    # Pass the text to the function and store the response 
     response = emotion_detector(text_to_analyze)
+    scores = response['emotion_scores']
 
-    # Return the full response as JSON
-    return jsonify(response)
+    return (
+        "For the given statement, the system response is anger: {:.6f}, disgust: {:.6f}, fear: {:.6f}, joy: {:.6f} and sadness: {:.6f}. "
+        "The dominant emotion is {}."
+        .format(
+            scores.get('anger', 0),
+            scores.get('disgust', 0),
+            scores.get('fear', 0),
+            scores.get('joy', 0),
+            scores.get('sadness', 0),
+            response['dominant_emotion']
+        ), 
+        200
+    )
 
 @app.route("/")
 def render_index_page():
