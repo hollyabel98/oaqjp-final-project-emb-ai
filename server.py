@@ -4,27 +4,19 @@ from EmotionDetection.emotion_detection import emotion_detector
 app = Flask("Emotion Detector") 
 
 @app.route("/emotionDetector")
-def sent_detector():
-    # Retrieve the text to analyze from the request arguments
+def detect_emotion():
     text_to_analyze = request.args.get('textToAnalyze')
-
-    # Pass the text to the function and store the response 
     response = emotion_detector(text_to_analyze)
+    scores = response['emotion_scores']
 
-    # Extract the dominant emotion and its score from the response
-    dominant_emotion = response['dominant_emotion']
-    score = response['emotion_scores'].get(dominant_emotion, 0)
-
-     # Format and return the string with emotion scores and dominant emotion
     return (
-        "For the given statement, the system response is anger: {}, disgust: {}, fear: {}, joy: {} and sadness: {}. "
-        "The dominant emotion is {}."
+        "For the given statement, the system response is anger: {}, disgust: {}, fear: {}, joy: {} and sadness: {}. The dominant emotion is {}. "
         .format(
-            scores.get('anger'),
-            scores.get('disgust'),
-            scores.get('fear'),
-            scores.get('joy'),
-            scores.get('sadness'),
+            scores.get('anger', 0),
+            scores.get('disgust', 0),
+            scores.get('fear', 0),
+            scores.get('joy', 0),
+            scores.get('sadness', 0),
             response['dominant_emotion']
         ), 
         200
