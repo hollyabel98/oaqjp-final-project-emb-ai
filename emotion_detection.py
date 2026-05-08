@@ -3,7 +3,7 @@ import requests  # Import the requests library to handle HTTP requests
 
 def emotion_detector(text_to_analyze):
     # Define a function named emotion_detector that takes a string input (text_to_analyze)
-    url = 'https://sn-watson-emotion.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/EmotionPredict'   # URL of the sentiment analysis service
+    url = 'https://sn-watson-emotion.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/EmotionPredict'   # URL
    
     myobj = {
         "raw_document": {
