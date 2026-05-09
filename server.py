@@ -15,20 +15,20 @@ def detect_emotion():
     dominant_emotion = response['dominant_emotion']
     score = response['emotion_scores'].get(dominant_emotion, 0)
 
-# Return a formatted string with the dominant emotion and its score
-return (
-    "For the given statement, the system response is anger: {}, disgust: {}, fear: {}, joy: {} and sadness: {}. "
-    "The dominant emotion is {}."
-    .format(
-        response['emotion_scores'].get('anger'),
-        response['emotion_scores'].get('disgust'),
-        response['emotion_scores'].get('fear'),
-        response['emotion_scores'].get('joy'),
-        response['emotion_scores'].get('sadness'),
-        response['dominant_emotion']
-    ), 
-    200
-)
+    # Return a formatted string with the dominant emotion and its score
+    return (
+        "For the given statement, the system response is anger: {}, disgust: {}, fear: {}, joy: {} and sadness: {}. "
+        "The dominant emotion is {}."
+        .format(
+            response['emotion_scores'].get('anger'),
+            response['emotion_scores'].get('disgust'),
+            response['emotion_scores'].get('fear'),
+            response['emotion_scores'].get('joy'),
+            response['emotion_scores'].get('sadness'),
+            response['dominant_emotion']
+        ), 
+        200
+    )
 
 @app.route("/")
 def render_index_page():
