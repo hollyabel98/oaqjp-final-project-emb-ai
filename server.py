@@ -13,8 +13,8 @@ def detect_emotion():
 
     # Extract the dominant emotion and its score from the response
     dominant_emotion = response['dominant_emotion']
-   score = response['emotion_scores'].get(dominant_emotion, 0)
-   
+    score = response['emotion_scores'].get(dominant_emotion, 0)
+
 # Return a formatted string with the dominant emotion and its score
 return (
     "For the given statement, the system response is anger: {}, disgust: {}, fear: {}, joy: {} and sadness: {}. "
