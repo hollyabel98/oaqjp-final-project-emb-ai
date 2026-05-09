@@ -22,7 +22,7 @@ def detect_emotions():
     )
 
     if dominant_emotion is None:
-        return "Invalid text, please try again!."
+        return "Invalid text! Please try again!"
     return response_text
 
 @app.route("/")
