@@ -51,8 +51,6 @@ def detect_emotions():
         return f"Missing expected key in response: {key_err}", 500
     except ValueError as val_err:
         return f"Value error: {val_err}", 500
-    except Exception as err:  # Broad catch as fallback
-        return f"An unexpected error occurred: {err}", 500
 
 
 
